@@ -1,39 +1,127 @@
 import React from 'react';
-import Gallery from '../components/common/Gallery';
+import { TagBox } from '../components';
+import ContestCard from '../components/ContestCard';
 import './Contest.css';
+import testImage from '../assets/img/test1.png';
+import testProfile from '../assets/img/test_profile.jpg';
 
 const Contest: React.FC = () => {
-  // TODO: 실제 데이터로 교체
-  const mockItems = [
+  const mockContests = [
     {
       id: 1,
-      image: require('../assets/img/test1.png'),
-      title: '메이플스토리 공모전',
-      description: '메이플스토리 캐릭터 공모전입니다.',
-      likes: 1234,
-      views: 5678
+      image: testImage,
+      title: '2025 여름 장마 콘테스트',
+      author: '콘테스트 주최',
+      authorAvatar: testProfile,
+      link: '/contest/1'
     },
     {
       id: 2,
-      image: require('../assets/img/test2.png'),
-      title: '리그오브레전드 공모전',
-      description: '리그오브레전드 챔피언 공모전입니다.',
-      likes: 2345,
-      views: 6789
+      image: testImage,
+      title: '2025 워터 콘테스트',
+      author: '콘테스트 주최',
+      authorAvatar: testProfile,
+      link: '/contest/2'
+    },
+    {
+      id: 3,
+      image: testImage,
+      title: '2025 여름 콘테스트',
+      author: '콘테스트 주최',
+      authorAvatar: testProfile,
+      link: '/contest/3'
+    },
+    {
+      id: 4,
+      image: testImage,
+      title: '2025 여름 콘테스트',
+      author: '콘테스트 주최',
+      authorAvatar: testProfile,
+      link: '/contest/4'
     }
   ];
 
   return (
-    <div className="contest">
-      <div className="contest_header">
-        <h1>공모전</h1>
-        <div className="contest_filters">
-          <button className="active">진행중</button>
-          <button>예정</button>
-          <button>종료</button>
+    <div className="contest_container">
+      <div className="contest_top_header">
+        <h2>콘테스트</h2>
+        <div className="contest_tag_box_wrap">
+          <TagBox title="#메이플스토리" />
+          <TagBox title="#리그오브레전드" />
+          <TagBox title="#오버워치" />
+          <TagBox title="#블루아카이브" />
+          <TagBox title="#테일즈런너" />
         </div>
       </div>
-      <Gallery items={mockItems} />
+      <div className="contest_main">
+        {/* 전체 콘테스트 섹션 */}
+        <div className="contest_section">
+          <div className="contest_section_header">
+            <h3 className="contest_section_title">전체 콘테스트</h3>
+          </div>
+          <div className="contest_list">
+            {mockContests.map((contest) => (
+              <ContestCard
+                key={contest.id}
+                image={contest.image}
+                title={contest.title}
+                author={contest.author}
+                authorAvatar={contest.authorAvatar}
+                link={contest.link}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 최신 콘테스트 섹션 */}
+        <div className="contest_section">
+          <div className="contest_section_header">
+            <h3 className="contest_section_title">최신 콘테스트</h3>
+          </div>
+          <div className="contest_list">
+            {mockContests.slice(0, 2).map((contest) => (
+              <ContestCard
+                key={contest.id}
+                image={contest.image}
+                title={contest.title}
+                author={contest.author}
+                authorAvatar={contest.authorAvatar}
+                link={contest.link}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 마감임박 콘테스트 섹션 */}
+        <div className="contest_section">
+          <div className="contest_section_header">
+            <h3 className="contest_section_title">마감임박 콘테스트</h3>
+          </div>
+          <div className="contest_list">
+            {mockContests.slice(2, 4).map((contest) => (
+              <ContestCard
+                key={contest.id}
+                image={contest.image}
+                title={contest.title}
+                author={contest.author}
+                authorAvatar={contest.authorAvatar}
+                link={contest.link}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 페이지네이션 */}
+        <div className="contest_pagination">
+          <a href="#">‹</a>
+          <a href="#" className="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">›</a>
+        </div>
+      </div>
     </div>
   );
 };

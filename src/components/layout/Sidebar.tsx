@@ -57,13 +57,13 @@ const Sidebar: React.FC = () => {
           <li>
             <Link to="/contest" className={location.pathname === '/contest' ? 'active' : ''}>
               <i className="fa-solid fa-award"></i>
-              <span>공모전</span>
+              <span>콘테스트</span>
             </Link>
           </li>
           <li>
             <Link to="/heart" className={location.pathname === '/heart' ? 'active' : ''}>
               <i className="fa-solid fa-heart"></i>
-              <span>즐겨찾기</span>
+              <span>찜한 작품</span>
             </Link>
           </li>
         </ul>

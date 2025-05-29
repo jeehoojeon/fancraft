@@ -8,6 +8,9 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import Illust from './pages/Illust';
 import Cartoon from './pages/Cartoon';
 import Fiction from './pages/Fiction';
+import Ranking from './pages/Ranking';
+import Contest from './pages/Contest';
+import Heart from './pages/Heart';
 
 function App() {
   return (
@@ -19,9 +22,9 @@ function App() {
           <Route path="illust" element={<Illust />} />
           <Route path="cartoon" element={<Cartoon />} />
           <Route path="fiction" element={<Fiction />} />
-          <Route path="rank" element={<div>랭킹 페이지</div>} />
-          <Route path="contest" element={<div>공모전 페이지</div>} />
-          <Route path="heart" element={<div>즐겨찾기 페이지</div>} />
+          <Route path="rank" element={<Ranking />} />
+          <Route path="contest" element={<Contest />} />
+          <Route path="heart" element={<Heart />} />
         </Route>
       </Routes>
     </Router>

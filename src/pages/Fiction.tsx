@@ -50,16 +50,12 @@ const Fiction: React.FC = () => {
       <div className="top_header">
         <h2>소설</h2>
         <div className="tag_box_wrap">
-          <TagBox title="#판타지" />
-          <TagBox title="#SF" />
-          <TagBox title="#로맨스" />
-          <TagBox title="#스릴러" />
-          <TagBox title="#액션" />
-          <TagBox title="#무협" />
-          <TagBox title="#일상" />
-          <TagBox title="#학원" />
-          <TagBox title="#게임" />
-          <TagBox title="#판타지" />
+          <TagBox title="#메이플스토리" />
+          <TagBox title="#리그오브레전드" />
+          <TagBox title="#오버워치" />
+          <TagBox title="#블루아카이브" />
+          <TagBox title="#테일즈런너" />
+          <TagBox title="더보기" />
         </div>
       </div>
       <div className="main">
@@ -89,7 +85,7 @@ const Fiction: React.FC = () => {
           <div className="section_header">
             <div className="ranking_title">
               <div className="ranking_sub">데일리 랭킹</div>
-              <div className="ranking_main">인기 소설</div>
+              <div className="fiction_ranking_main">인기 소설</div>
             </div>
             <a href="#" className="more_button">
               더보기

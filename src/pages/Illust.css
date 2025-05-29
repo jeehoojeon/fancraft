@@ -63,8 +63,12 @@
   width: 100%;
 }
 
+.section:nth-child(1) {
+  margin-bottom: 120px;
+}
+
 .section:nth-child(2) {
-  margin-top: 0;
+  margin-bottom: 120px;
 }
 
 .section_header {
@@ -96,7 +100,7 @@
   color: var(--white-color);
 }
 
-.ranking_main {
+.illust_ranking_main {
   font-size: 24px;
   font-family: "nexon_medium";
   font-weight: 500;

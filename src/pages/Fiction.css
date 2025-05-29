@@ -89,7 +89,7 @@
   color: white;
 }
 
-.ranking_main {
+.fiction_ranking_main {
   font-size: 30px;
   font-family: "nexon_medium";
   font-weight: 500;
@@ -302,7 +302,7 @@
     font-size: 20px;
   }
 
-  .ranking_main {
+  .fiction_ranking_main {
     font-size: 24px;
   }
 
