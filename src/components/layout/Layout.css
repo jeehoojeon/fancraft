@@ -1,0 +1,51 @@
+.wrap {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+.content {
+  margin-left: 15%;
+  width: 85%;
+  position: relative;
+  background-color: #000511;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #000511;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #000511;
+  z-index: 1000;
+}
+
+.main {
+  min-height: 100vh;
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  background-color: #000511;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+} 

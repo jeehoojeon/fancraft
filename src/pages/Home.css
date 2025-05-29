@@ -1,0 +1,154 @@
+.home {
+  padding: 2rem;
+  background-color: #000511;
+  width: calc(100% - 15%);
+  margin-left: 15%;
+  box-sizing: border-box;
+}
+
+.featured_section,
+.recent_section {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.featured_section h2,
+.recent_section h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-family: "nexon_medium";
+}
+
+.gallery {
+  display: flex;
+  width: 100%;
+  margin: 0;
+}
+
+.gallery_column {
+  padding: 0 12px;
+  background-clip: padding-box;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card_image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.card_content {
+  padding: 20px;
+}
+
+.card_title {
+  font-family: "nexon_medium";
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.card_description {
+  font-size: 14px;
+  font-family: "nexon_regular";
+  font-weight: normal;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card_stats {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  color: #888;
+}
+
+.card_stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.more_btn {
+  background: #e3ff7d;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.more_btn:hover {
+  transform: scale(1.05);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.loading_spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #6eff51;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding: 1rem;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .featured_section h2,
+  .recent_section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+} 

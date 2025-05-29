@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'football_300';
+  src: url('../assets/fonts/football_300.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'football_700';
+  src: url('../assets/fonts/football_700.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexon_light';
+  src: url('../assets/fonts/nexon_light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexon_regular';
+  src: url('../assets/fonts/nexon_regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexon_medium';
+  src: url('../assets/fonts/nexon_medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nexon_bold';
+  src: url('../assets/fonts/nexon_bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+} 
