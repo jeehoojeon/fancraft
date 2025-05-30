@@ -1,8 +1,14 @@
 import React from 'react';
 import './Card.css';
+import styled from 'styled-components';
+
+const CardContainer = styled.div<{ $imageUrl?: string }>`
+  background: ${props => props.$imageUrl ? `url(${props.$imageUrl})` : 'none'};
+  // ... existing code ...
+`;
 
 interface CardProps {
-  image: string;
+  $imageUrl?: string;
   title: string;
   description: string;
   likes: number;
@@ -11,7 +17,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
-  image,
+  $imageUrl,
   title,
   description,
   likes,
@@ -19,8 +25,8 @@ const Card: React.FC<CardProps> = ({
   onClick
 }) => {
   return (
-    <div className="card" onClick={onClick}>
-      <img src={image} alt={title} className="card_image" />
+    <CardContainer $imageUrl={$imageUrl} onClick={onClick}>
+      <img src={$imageUrl} alt={title} className="card_image" />
       <div className="card_content">
         <h3 className="card_title">{title}</h3>
         <p className="card_description">{description}</p>
@@ -32,7 +38,7 @@ const Card: React.FC<CardProps> = ({
           <button className="more_btn">더보기</button>
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 };
 

@@ -22,7 +22,7 @@ const Gallery: React.FC<GalleryProps> = ({ items, onItemClick }) => {
       {items.map((item) => (
         <Card
           key={item.id}
-          image={item.image}
+          $imageUrl={item.image}
           title={item.title}
           description={item.description}
           likes={item.likes}

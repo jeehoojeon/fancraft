@@ -26,29 +26,33 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'football_300';
-    src: url('/assets/fonts/football_300.woff2') format('woff2');
+    src: url('/fonts/football_300.woff') format('woff');
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'football_700';
-    src: url('/assets/fonts/football_700.woff2') format('woff2');
+    src: url('/fonts/football_700.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'nexon_light';
-    src: url('/assets/fonts/nexon_light.woff2') format('woff2');
+    src: url('/fonts/nexon_light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
     font-family: 'nexon_medium';
-    src: url('/assets/fonts/nexon_medium.woff2') format('woff2');
+    src: url('/fonts/nexon_medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
   }
 `; 

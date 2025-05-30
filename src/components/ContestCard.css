@@ -1,5 +1,5 @@
 .contest_card {
-  border: 1px solid #6eff51;
+  border: 1px solid #333;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -9,6 +9,7 @@
 }
 
 .contest_card:hover {
+  border: 1px solid #6eff51;
   transform: translateY(-5px);
 }
 
@@ -53,4 +54,4 @@
   background-size: cover;
   background-position: center;
   margin-right: 8px;
-} 
+}

@@ -4,7 +4,7 @@ import './FictionCard.css';
 interface FictionCardProps {
   image: string;
   title: string;
-  description: string;
+  description: string | undefined;
   tag: string;
   author: string;
   authorAvatar: string;

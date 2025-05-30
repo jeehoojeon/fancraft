@@ -2,43 +2,50 @@ import React from 'react';
 import { TagBox } from '../components';
 import ContestCard from '../components/ContestCard';
 import './Contest.css';
-import testImage from '../assets/img/test1.png';
-import testProfile from '../assets/img/test_profile.jpg';
+
+import contestImage1 from '../assets/img/contest_main_img01.png';
+import contestImage2 from '../assets/img/contest_main_img02.png';
+import contestImage3 from '../assets/img/contest_main_img03.png';
+import contestImage4 from '../assets/img/contest_main_img04.png';
+
+import profileImage1 from '../assets/img/illust_profile7.jpg';
+import profileImage2 from '../assets/img/illust_profile3.jpg';
 
 const Contest: React.FC = () => {
   const mockContests = [
     {
       id: 1,
-      image: testImage,
+      image: contestImage1,
       title: '2025 여름 장마 콘테스트',
-      author: '콘테스트 주최',
-      authorAvatar: testProfile,
+      author: '픽셀퀘스트 챌린지',
+      authorAvatar: profileImage1,
       link: '/contest/1'
     },
     {
       id: 2,
-      image: testImage,
-      title: '2025 워터 콘테스트',
-      author: '콘테스트 주최',
-      authorAvatar: testProfile,
+      image: contestImage2,
+      title: '2025 설맞이 콘테스트',
+      author: '판타지프레임',
+      authorAvatar: profileImage2,
       link: '/contest/2'
     },
     {
       id: 3,
-      image: testImage,
-      title: '2025 여름 콘테스트',
-      author: '콘테스트 주최',
-      authorAvatar: testProfile,
+      image: contestImage3,
+      title: '2025 영혼의 꽃 콘테스트',
+      author: '전설제작',
+      authorAvatar: profileImage1,
       link: '/contest/3'
     },
     {
       id: 4,
-      image: testImage,
-      title: '2025 여름 콘테스트',
-      author: '콘테스트 주최',
-      authorAvatar: testProfile,
+      image: contestImage4,
+      title: '2025 동물특공대 콘테스트',
+      author: '퀘스트잉크 ',
+      authorAvatar: profileImage2,
       link: '/contest/4'
     }
+    
   ];
 
   return (
@@ -51,6 +58,7 @@ const Contest: React.FC = () => {
           <TagBox title="#오버워치" />
           <TagBox title="#블루아카이브" />
           <TagBox title="#테일즈런너" />
+          <TagBox title="더보기" />
         </div>
       </div>
       <div className="contest_main">

@@ -22,7 +22,7 @@
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
-  border: 1px solid #6eff51;
+/*   border: 1px solid #6eff51; */
   border-radius: 10px;
 }
 

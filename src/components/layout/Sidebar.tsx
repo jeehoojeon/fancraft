@@ -2,7 +2,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  currentPath: string;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ currentPath }) => {
   const location = useLocation();
 
   return (
@@ -31,19 +35,19 @@ const Sidebar: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link to="/illust" className={location.pathname === '/illust' ? 'active' : ''}>
+            <Link to="/illust" className={location.pathname.startsWith('/illust') ? 'active' : ''}>
               <i className="fa-solid fa-palette"></i>
               <span>일러스트</span>
             </Link>
           </li>
           <li>
-            <Link to="/cartoon" className={location.pathname === '/cartoon' ? 'active' : ''}>
+            <Link to="/cartoon" className={location.pathname.startsWith('/cartoon') ? 'active' : ''}>
               <i className="fa-solid fa-book"></i>
               <span>만화</span>
             </Link>
           </li>
           <li>
-            <Link to="/fiction" className={location.pathname === '/fiction' ? 'active' : ''}>
+            <Link to="/fiction" className={location.pathname.startsWith('/fiction') ? 'active' : ''}>
               <i className="fa-solid fa-book-open"></i>
               <span>소설</span>
             </Link>

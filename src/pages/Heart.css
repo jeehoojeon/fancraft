@@ -16,9 +16,9 @@
       rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0.5) 100%
     ),
-    url("../assets/img/illust_header_bg.png") lightgray 50% / cover no-repeat;
+    url("../assets/img/heart_header_bg") lightgray 50% / cover no-repeat;
+  background-position: 40% 20%;
   background-size: cover;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,5 +170,59 @@
 
   .heart_card_grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 375px) and (max-height: 812px) {
+  .heart_container {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .heart_top_header {
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .heart_main {
+    padding: 10px;
+  }
+
+  .heart_top_header h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .heart_tag_box_wrap {
+    gap: 5px;
+  }
+
+  .heart_card_grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .heart_card_image {
+    height: 150px;
+  }
+
+  .heart_card_content {
+    padding: 10px;
+  }
+
+  .heart_card_title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .heart_card_author {
+    font-size: 10px;
+  }
+
+  .heart_author_avatar {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
   }
 } 
