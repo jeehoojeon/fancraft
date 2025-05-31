@@ -250,6 +250,12 @@
 }
 
 @media (max-width: 375px) and (max-height: 812px) {
+  .cartoon_container {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
   .cartoon_container .top_header {
     height: 120px;
     padding: 15px;
@@ -288,13 +294,12 @@
   }
 
   .card_grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 
-  .card_grid.tags {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .card_image_container {
+    height: 200px !important;
   }
 
   .tag_card {

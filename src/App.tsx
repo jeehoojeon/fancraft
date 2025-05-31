@@ -14,6 +14,8 @@ import FictionDetail from './components/fiction/FictionDetail';
 import Ranking from './pages/Ranking';
 import Contest from './pages/Contest';
 import Heart from './pages/Heart';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="rank" element={<Ranking />} />
           <Route path="contest" element={<Contest />} />
           <Route path="heart" element={<Heart />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

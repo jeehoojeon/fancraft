@@ -50,25 +50,29 @@
 
 @media (max-width: 768px) {
   .layout {
-    flex-direction: column; /* 작은 화면에서 세로 방향으로 변경 */
+    flex-direction: column;
   }
-
   .sidebar {
-    display: flex; /* 사이드바 다시 보이게 함 */
-    width: 100%; /* 전체 너비 차지 */
-    min-height: auto; /* 높이 자동 조절 */
-    position: static; /* 고정 위치 해제 */
-    z-index: auto;
+    z-index: 2100;
   }
-
   .content_area {
-    margin-left: 0; /* 왼쪽 여백 제거 */
-    width: 100%; /* 전체 너비 차지 */
+    margin-left: 0;
+    width: 100%;
+    z-index: 100;
+    position: relative;
   }
-
   .main {
     margin-left: 0;
     width: 100%;
     padding: 1rem;
+  }
+}
+
+@media (max-width: 375px) and (max-height: 812px) {
+  .main {
+    padding: 0.5rem;
+  }
+  .content_area {
+    padding-top: 60px;
   }
 } 

@@ -157,6 +157,7 @@ const CartoonDetail: React.FC = () => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [likeCount, setLikeCount] = useState<number>(0);
   const [illustration, setIllustration] = useState<IllustrationData | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const foundCartoon = mockCartoons.find(
@@ -171,6 +172,15 @@ const CartoonDetail: React.FC = () => {
       setIllustration(null);
     }
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 375);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
@@ -210,66 +220,136 @@ const CartoonDetail: React.FC = () => {
 
   return (
     <div className="cartoon_detail_container">
-      <div className="illust_detail_header">
+      <div className="cartoon_detail_header">
         <h1>{illustration.title}</h1>
       </div>
-
-      <div className="illust_detail_content">
-        <div className="illust_detail_main">
-          <div
-            className="illust_detail_image"
-            style={{ backgroundImage: `url(${illustration.$imageUrl})` }}
-          >
+      <div className="cartoon_detail_content">
+        {isMobile ? (
+          <div className="cartoon_detail_main" style={{ flexDirection: 'column', display: 'flex', gap: 10, padding: 0, margin: 0 }}>
+            <div style={{ width: '100%', maxWidth: '100%', aspectRatio: '16/9', borderRadius: 0, margin: 0, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+              <img
+                src={illustration.$imageUrl}
+                alt={illustration.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
+              />
+            </div>
+            <button
+              className="view-full-btn"
+              style={{
+                width: '100%',
+                padding: '12px 0',
+                background: '#222',
+                color: '#fff',
+                fontSize: '1rem',
+                border: 'none',
+                borderRadius: '0 0 8px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0 0 10px 0',
+                cursor: 'pointer'
+              }}
+              onClick={() => alert('이미지 전체보기(확대) 기능 구현 필요')}
+            >
+              <i className="fa-solid fa-magnifying-glass-plus"></i>
+              전체보기
+            </button>
+            <div
+              className="cartoon_detail_info"
+              style={{ order: 2, width: '100%', maxWidth: '100%', padding: '15px', margin: 0, borderRadius: 0, boxSizing: 'border-box', backgroundColor: '#1a1a1a' }}
+            >
+              <div className="cartoon_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{illustration.author}</h3>
+                  <p>팔로워 1.2K</p>
+                </div>
+              </div>
+              <div className="cartoon_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{illustration.views.toLocaleString()}</span>
+                </div>
+              </div>
+              <div className="cartoon_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="cartoon_detail_description">
+                <p>{illustration.description}</p>
+              </div>
+            </div>
           </div>
-
-          <div className="illust_detail_info">
-            <div className="illust_detail_author">
-              <div
-                className="author_avatar"
-                style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
-              ></div>
-              <div className="author_info">
-                <h3>{illustration.author}</h3>
-                <p>팔로워 1.2K</p>
-              </div>
+        ) : (
+          <div className="cartoon_detail_main">
+            <div
+              className="cartoon_detail_image"
+              style={{ backgroundImage: `url(${illustration.$imageUrl})` }}
+            >
             </div>
-
-            <div className="illust_detail_stats">
-              <div className="stat_item">
-                <i className="fa-solid fa-heart"></i>
-                <span>{likeCount.toLocaleString()}</span>
+            <div className="cartoon_detail_info">
+              <div className="cartoon_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{illustration.author}</h3>
+                  <p>팔로워 1.2K</p>
+                </div>
               </div>
-              <div className="stat_item">
-                <i className="fa-solid fa-eye"></i>
-                <span>{illustration.views.toLocaleString()}</span>
+              <div className="cartoon_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{illustration.views.toLocaleString()}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="illust_detail_actions">
-              <button
-                className="action_button"
-                onClick={handleLike}
-              >
-                {isLiked ? '좋아요 취소' : '좋아요'}
-              </button>
-              <button
-                className="action_button"
-                onClick={handleFollow}
-              >
-                {isFollowing ? '팔로우 취소' : '팔로우'}
-              </button>
-            </div>
-
-            <div className="illust_detail_description">
-              <p>{illustration.description}</p>
+              <div className="cartoon_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="cartoon_detail_description">
+                <p>{illustration.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-
+        )}
         <div className="comment_section">
           <h3>댓글</h3>
           <div className="comment_input">
-            <div className="comment_user_avatar" style={{ backgroundImage: `url(/assets/img/profile_base.png)` }}></div>
+            <div className="comment_user_avatar" style={{ backgroundImage: `url(/assets/img/test1.png)` }}></div>
             <input
               type="text"
               placeholder="댓글을 입력하세요"
@@ -279,11 +359,10 @@ const CartoonDetail: React.FC = () => {
             />
             <button onClick={handleCommentSubmit}>전송</button>
           </div>
-
           <div className="comments_list">
             {comments.map((comment) => (
               <div key={comment.id} className="comment_item">
-                <div className="comment_user_avatar" style={{ backgroundImage: `url(${comment.userAvatarUrl || '/assets/img/illust_profile1.jpg'})` }}></div>
+                <div className="comment_user_avatar" style={{ backgroundImage: `url(${comment.userAvatarUrl || '/assets/img/test1.png'})` }}></div>
                 <div className="comment_content">
                   <div className="comment_user_name">{comment.userName}</div>
                   <div className="comment_text">{comment.text}</div>

@@ -8,6 +8,26 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef(false);
 
+  // 챗봇 상태 관리를 위한 state 추가
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+
+  // 챗봇 아이콘 클릭 핸들러
+  const handleChatbotIconClick = () => {
+    if (isChatbotOpen) {
+      // 챗봇 닫기
+      if ((window as any).chatbase && (window as any).chatbase.close) {
+        (window as any).chatbase.close();
+      }
+      setIsChatbotOpen(false);
+    } else {
+      // 챗봇 열기
+      if ((window as any).chatbase && (window as any).chatbase.open) {
+        (window as any).chatbase.open();
+      }
+      setIsChatbotOpen(true);
+    }
+  };
+
   const breakpointColumns = {
     default: 5,
     1600: 4,
@@ -299,6 +319,15 @@ const Home: React.FC = () => {
           <div className="loading_spinner"></div>
         </div>
       )}
+
+      {/* 챗봇 아이콘 */}
+      <div className={`chatbot-icon ${isChatbotOpen ? 'open' : 'closed'}`} onClick={handleChatbotIconClick}>
+        {isChatbotOpen ? (
+          <i className="fa-solid fa-xmark"></i> // 닫기 아이콘
+        ) : (
+          <i className="fa-solid fa-comment-dots"></i> // 열기 아이콘 (Font Awesome 필요)
+        )}
+      </div>
     </div>
   );
 };

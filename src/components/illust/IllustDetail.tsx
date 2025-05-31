@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './IllustDetail.css';
+import illustMainImg from '../../assets/img/illustdetail_main_img1.png';
 
 interface Comment {
   id: number;
@@ -21,11 +22,11 @@ interface IllustrationData {
   views: number;
 }
 
-// 임시 더미 데이터 (Illust.tsx의 데이터를 합쳐서 사용)
+// 임시 더미 데이터 
 const mockIllustrations: IllustrationData[] = [
   {
     id: 1,
-    $imageUrl: '/assets/img/illustdetail_main_img1.png',
+    $imageUrl: illustMainImg,
     title: '오버워치',
     description: "이번 테마는 '여름 물 놀이'으로 그렸어요. 여러분도 시원한 여름 보내길~ ",
     author: '빔은고양이야',
@@ -160,6 +161,8 @@ const IllustDetail: React.FC = () => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [likeCount, setLikeCount] = useState<number>(0);
   const [illustration, setIllustration] = useState<IllustrationData | null>(null);
+  // 모바일 여부 체크
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const foundIllustration = mockIllustrations.find(
@@ -176,6 +179,15 @@ const IllustDetail: React.FC = () => {
       setIllustration(null);
     }
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 375);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
@@ -219,60 +231,130 @@ const IllustDetail: React.FC = () => {
       <div className="illust_detail_header">
         <h1>오버워치 썸머 비치 파티!</h1>
       </div>
-
       <div className="illust_detail_content">
-        <div className="illust_detail_main">
-          <div
-            className="illust_detail_image"
-            style={{ backgroundImage: `url(${illustration.$imageUrl})` }}
-          >
-            {/* 이미지가 들어갈 자리 */}
+        {isMobile ? (
+          <div className="illust_detail_main" style={{ flexDirection: 'column', display: 'flex', gap: 10, padding: 0, margin: 0 }}>
+            <div style={{ width: '100%', maxWidth: '100%', aspectRatio: '16/9', borderRadius: 0, margin: 0, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+              <img
+                src={illustration.$imageUrl}
+                alt={illustration.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
+              />
+            </div>
+            <button
+              className="view-full-btn"
+              style={{
+                width: '100%',
+                padding: '12px 0',
+                background: '#222',
+                color: '#fff',
+                fontSize: '1rem',
+                border: 'none',
+                borderRadius: '0 0 8px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0 0 10px 0',
+                cursor: 'pointer'
+              }}
+              onClick={() => alert('이미지 전체보기(확대) 기능 구현 필요')}
+            >
+              <i className="fa-solid fa-magnifying-glass-plus"></i>
+              전체보기
+            </button>
+            <div
+              className="illust_detail_info"
+              style={{ order: 2, width: '100%', maxWidth: '100%', padding: '15px', margin: 0, borderRadius: 0, boxSizing: 'border-box', backgroundColor: '#1a1a1a' }}
+            >
+              <div className="illust_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{illustration.author}</h3>
+                  <p>팔로워 1.2K</p>
+                </div>
+              </div>
+              <div className="illust_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{illustration.views.toLocaleString()}</span>
+                </div>
+              </div>
+              <div className="illust_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="illust_detail_description">
+                <p>{illustration.description}</p>
+              </div>
+            </div>
           </div>
-
-          <div className="illust_detail_info">
-            <div className="illust_detail_author">
-              <div
-                className="author_avatar"
-                style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
-              ></div>
-              <div className="author_info">
-                <h3>{illustration.author}</h3>
-                <p>팔로워 1.2K</p>
-              </div>
+        ) : (
+          <div className="illust_detail_main">
+            <div
+              className="illust_detail_image"
+              style={{ backgroundImage: `url(${illustration.$imageUrl})` }}
+            >
+              {/* 이미지가 들어갈 자리 */}
             </div>
-
-            <div className="illust_detail_stats">
-              <div className="stat_item">
-                <i className="fa-solid fa-heart"></i>
-                <span>{likeCount.toLocaleString()}</span>
+            <div className="illust_detail_info">
+              <div className="illust_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${illustration.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{illustration.author}</h3>
+                  <p>팔로워 1.2K</p>
+                </div>
               </div>
-              <div className="stat_item">
-                <i className="fa-solid fa-eye"></i>
-                <span>{illustration.views.toLocaleString()}</span>
+              <div className="illust_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{illustration.views.toLocaleString()}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="illust_detail_actions">
-              <button
-                className="action_button"
-                onClick={handleLike}
-              >
-                {isLiked ? '좋아요 취소' : '좋아요'}
-              </button>
-              <button
-                className="action_button"
-                onClick={handleFollow}
-              >
-                {isFollowing ? '팔로우 취소' : '팔로우'}
-              </button>
-            </div>
-
-            <div className="illust_detail_description">
-              <p>{illustration.description}</p>
+              <div className="illust_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="illust_detail_description">
+                <p>{illustration.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-
+        )}
         <div className="comment_section">
           <h3>댓글</h3>
           <div className="comment_input">
@@ -286,7 +368,6 @@ const IllustDetail: React.FC = () => {
             />
             <button onClick={handleCommentSubmit}>전송</button>
           </div>
-
           <div className="comments_list">
             {comments.map((comment) => (
               <div key={comment.id} className="comment_item">

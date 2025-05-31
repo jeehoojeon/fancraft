@@ -216,116 +216,79 @@
 }
 
 @media (max-width: 375px) and (max-height: 812px) {
-  .contest_container .top_header {
-    height: 100px;
-    padding: 10px;
-    margin-bottom: 10px;
+  .contest_container .top_header { display: none; }
+  /* 기존 .top_header h2 및 .tag_box_wrap 스타일 제거 */
+  
+  .contest_container .contest_top_header {
+    height: 120px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    justify-content: center !important; /* Illust header aligns center vertically */
+    align-items: flex-start !important; /* Illust header aligns left horizontally */
   }
 
-  .top_header h2 {
-    font-size: 24px;
-    margin-bottom: 5px;
+  .contest_top_header h2 {
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
   }
 
-  .tag_box_wrap {
-    gap: 5px;
+  .contest_tag_box_wrap {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 10px !important;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .contest_tag_box_wrap::-webkit-scrollbar {
+    display: none;
   }
 
   .tag_box {
-    height: 30px;
-    font-size: 14px;
-    padding: 0 15px;
+    height: 30px !important;
+    font-size: 14px !important;
+    padding: 0 15px !important;
+    min-width: fit-content !important;
   }
 
-  .main {
-    padding: 10px;
+  /* Contest Card 모바일 스타일 추가 */
+  .contest_list .contest_card_image_container {
+    height: 200px !important;
   }
 
-  .section {
-    margin-bottom: 50px;
-    margin-top: 20px;
+  .contest_list .contest_card_content {
+    padding: 10px !important;
   }
 
-  .section_header {
-    margin-bottom: 10px;
+  .contest_pagination {
+    margin-bottom: 20px;
   }
 
-  .section_title,
-  .contest_ranking_main {
-    font-size: 16px;
+  .contest_pagination a {
+    padding: 4px 8px;
+    font-size: 10px;
   }
 
-  .ranking_sub {
-    font-size: 14px;
+  /* Contest Main 섹션 패딩 조정 */
+  .contest_main {
+    padding: 15px !important;
   }
 
-  .card_grid {
+  .contest_section {
+    margin-bottom: 60px;
+  }
+
+  .contest_section_header {
+    margin-bottom: 15px;
+  }
+
+  .contest_section_title {
+    font-size: 18px;
+  }
+
+  .contest_list {
     gap: 10px;
-  }
-
-  .card_image_container {
-    height: 150px;
-  }
-
-  .card_content {
-    padding: 10px;
-  }
-
-  .card_title {
-    font-size: 14px;
-  }
-
-  .card_description {
-    font-size: 12px;
-  }
-
-  .card_stats {
-    margin-top: 10px;
-    padding-top: 10px;
-  }
-
-  .card_profile {
-    gap: 5px;
-  }
-
-  .card_profile_image {
-    width: 20px;
-    height: 20px;
-  }
-
-  .card_profile_name {
-    font-size: 10px;
-  }
-
-  .card_engagement {
-    gap: 8px;
-  }
-
-  .card_stat {
-    gap: 3px;
-  }
-
-  .card_stat_icon {
-    font-size: 10px;
-  }
-
-  .card_stat_number {
-    font-size: 10px;
-  }
-
-  .card_grid.tags {
-    grid-template-columns: 1fr; /* 태그 카드는 한 열로 변경 */
-    gap: 10px;
-  }
-
-  .card_grid.tags .card.tag_card {
-    height: 80px;
-    padding: 8px;
-  }
-
-  .tag_card_title {
-    font-size: 14px;
-    bottom: 8px;
-    left: 8px;
   }
 } 

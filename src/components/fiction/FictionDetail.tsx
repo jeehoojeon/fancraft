@@ -116,6 +116,7 @@ const FictionDetail: React.FC = () => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [likeCount, setLikeCount] = useState<number>(0);
   const [fiction, setFiction] = useState<FictionData | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const foundFiction = mockFictions.find(
@@ -130,6 +131,15 @@ const FictionDetail: React.FC = () => {
       setFiction(null);
     }
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 375);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
@@ -171,64 +181,140 @@ const FictionDetail: React.FC = () => {
     <div className="fiction_detail_container">
       <div className="fiction_detail_header">
         <h1>{fiction.title}</h1>
+{/*         <div className="tag_box">
+          <span className="tag">판타지</span>
+          <span className="tag">액션</span>
+          <span className="tag">회귀</span>
+        </div> */}
       </div>
 
       <div className="fiction_detail_content">
-        <div className="fiction_detail_main">
-          <div
-            className="fiction_detail_image"
-            style={{ backgroundImage: `url(${fiction.$imageUrl})` }}
-          >
+        {isMobile ? (
+          <div className="fiction_detail_main" style={{ flexDirection: 'column', display: 'flex', gap: 10, padding: 0, margin: 0 }}>
+            <div style={{ width: '100%', maxWidth: '100%', aspectRatio: '16/9', borderRadius: 0, margin: 0, background: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+              <img
+                src={fiction.$imageUrl}
+                alt={fiction.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 0, display: 'block' }}
+              />
+            </div>
+            <button
+              className="view-full-btn"
+              style={{
+                width: '100%',
+                padding: '12px 0',
+                background: '#222',
+                color: '#fff',
+                fontSize: '1rem',
+                border: 'none',
+                borderRadius: '0 0 8px 8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                margin: '0 0 10px 0',
+                cursor: 'pointer'
+              }}
+              onClick={() => alert('이미지 전체보기(확대) 기능 구현 필요')}
+            >
+              <i className="fa-solid fa-magnifying-glass-plus"></i>
+              전체보기
+            </button>
+            <div
+              className="fiction_detail_info"
+              style={{ order: 2, width: '100%', maxWidth: '100%', padding: '15px', margin: 0, borderRadius: 0, boxSizing: 'border-box', backgroundColor: '#1a1a1a' }}
+            >
+              <div className="fiction_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${fiction.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{fiction.author}</h3>
+                  <p>팔로워 1.5K</p>
+                </div>
+              </div>
+              <div className="fiction_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{fiction.views.toLocaleString()}</span>
+                </div>
+              </div>
+              <div className="fiction_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="fiction_detail_description">
+                <p>{fiction.description}</p>
+              </div>
+            </div>
           </div>
-
-          <div className="fiction_detail_info">
-            <div className="fiction_detail_author">
-              <div
-                className="author_avatar"
-                style={{ backgroundImage: `url(${fiction.$profileImageUrl})` }}
-              ></div>
-              <div className="author_info">
-                <h3>{fiction.author}</h3>
-                <p>팔로워 1.5K</p> {/* 소설에 맞는 팔로워 수 수정 */}
-              </div>
+        ) : (
+          <div className="fiction_detail_main">
+            <div
+              className="fiction_detail_image"
+              style={{ backgroundImage: `url(${fiction.$imageUrl})` }}
+            >
             </div>
-
-            <div className="fiction_detail_stats">
-              <div className="stat_item">
-                <i className="fa-solid fa-heart"></i>
-                <span>{likeCount.toLocaleString()}</span>
+            <div className="fiction_detail_info">
+              <div className="fiction_detail_author">
+                <div
+                  className="author_avatar"
+                  style={{ backgroundImage: `url(${fiction.$profileImageUrl})` }}
+                ></div>
+                <div className="author_info">
+                  <h3>{fiction.author}</h3>
+                  <p>팔로워 1.5K</p>
+                </div>
               </div>
-              <div className="stat_item">
-                <i className="fa-solid fa-eye"></i>
-                <span>{fiction.views.toLocaleString()}</span>
+              <div className="fiction_detail_stats">
+                <div className="stat_item">
+                  <i className="fa-solid fa-heart"></i>
+                  <span>{likeCount.toLocaleString()}</span>
+                </div>
+                <div className="stat_item">
+                  <i className="fa-solid fa-eye"></i>
+                  <span>{fiction.views.toLocaleString()}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="fiction_detail_actions">
-              <button
-                className="action_button"
-                onClick={handleLike}
-              >
-                {isLiked ? '좋아요 취소' : '좋아요'}
-              </button>
-              <button
-                className="action_button"
-                onClick={handleFollow}
-              >
-                {isFollowing ? '팔로우 취소' : '팔로우'}
-              </button>
-            </div>
-
-            <div className="fiction_detail_description">
-              <p>{fiction.description}</p>
+              <div className="fiction_detail_actions">
+                <button
+                  className="action_button"
+                  onClick={handleLike}
+                >
+                  {isLiked ? '좋아요 취소' : '좋아요'}
+                </button>
+                <button
+                  className="action_button"
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? '팔로우 취소' : '팔로우'}
+                </button>
+              </div>
+              <div className="fiction_detail_description">
+                <p>{fiction.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-
+        )}
         <div className="comment_section">
           <h3>댓글</h3>
           <div className="comment_input">
-            <div className="comment_user_avatar" style={{ backgroundImage: `url(/assets/img/profile_base.png)` }}></div>
+            <div className="comment_user_avatar" style={{ backgroundImage: `url(/assets/img/test1.png)` }}></div>
             <input
               type="text"
               placeholder="댓글을 입력하세요"
@@ -238,11 +324,10 @@ const FictionDetail: React.FC = () => {
             />
             <button onClick={handleCommentSubmit}>전송</button>
           </div>
-
           <div className="comments_list">
             {comments.map((comment) => (
               <div key={comment.id} className="comment_item">
-                <div className="comment_user_avatar" style={{ backgroundImage: `url(${comment.userAvatarUrl || '/assets/img/illust_profile1.jpg'})` }}></div> {/* 소설 댓글 프로필 이미지 경로 수정 */}
+                <div className="comment_user_avatar" style={{ backgroundImage: `url(${comment.userAvatarUrl || '/assets/img/test1.png'})` }}></div>
                 <div className="comment_content">
                   <div className="comment_user_name">{comment.userName}</div>
                   <div className="comment_text">{comment.text}</div>

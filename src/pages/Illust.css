@@ -404,6 +404,12 @@
 }
 
 @media (max-width: 375px) and (max-height: 812px) {
+  .illust_container {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+
   .illust_container .top_header {
     height: 120px;
     padding: 15px;
@@ -411,7 +417,7 @@
   }
 
   .top_header h2 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 10px;
   }
 
@@ -442,7 +448,7 @@
   }
 
   .card_grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: 1fr !important;
     gap: 10px;
   }
 

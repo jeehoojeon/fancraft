@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Ranking.css';
 import { TagBox } from '../components/TagBox';
 import { Card } from '../components';
@@ -133,6 +133,18 @@ const Ranking: React.FC = () => {
     // Add your navigation or other logic here
   };
 
+  // 모바일 여부 체크 상태 및 로직 추가
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 375);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="ranking_container">
       <div className="ranking_top_header">
@@ -155,43 +167,50 @@ const Ranking: React.FC = () => {
 
       <div className="ranking_main">
         {/* 1위 하이라이트 */}
-        <div className="ranking_top_section">
-          <div className="ranking_featured_card">
-            <div className="ranking_featured_left">
-              <div className="ranking_featured_image">
-                <img
-                  src={rankingFeaturedImg}
-                  alt="랭킹 1위 작품"
-                />
-              </div>
-              <div className="ranking_featured_info">
-                <div className="ranking_featured_title">{rankingData[0].title}</div>
-                <div className="ranking_featured_tags">
-                  <span className="ranking_tag">{rankingData[0].category}</span>
-                  {/* Add more tags if needed */}
+        {isMobile ? (
+          <div className="ranking_mobile_featured_title">
+            <span className="ranking_number_mobile">1위</span>
+            <span className="ranking_title_mobile">{rankingData[0].title}</span>
+          </div>
+        ) : (
+          <div className="ranking_top_section">
+            <div className="ranking_featured_card">
+              <div className="ranking_featured_left">
+                <div className="ranking_featured_image">
+                  <img
+                    src={rankingFeaturedImg}
+                    alt="랭킹 1위 작품"
+                  />
                 </div>
-                <div className="ranking_featured_author">
-                  <div className="ranking_author_avatar" style={{ backgroundImage: `url(${rankingData[0].authorAvatar})` }}></div>
-                  <span className="ranking_author_name">{rankingData[0].authorName}</span>
-                </div>
-                <div className="ranking_featured_stats">
-                  <div className="ranking_stat_item">
-                    <i className="fa-solid fa-eye"></i>
-                    <span>{rankingData[0].views}</span>
+                <div className="ranking_featured_info">
+                  <div className="ranking_featured_title">{rankingData[0].title}</div>
+                  <div className="ranking_featured_tags">
+                    <span className="ranking_tag">{rankingData[0].category}</span>
+                    {/* Add more tags if needed */}
                   </div>
-                  <div className="ranking_stat_item">
-                    <i className="fa-solid fa-heart"></i>
-                    <span>{rankingData[0].likes}</span>
+                  <div className="ranking_featured_author">
+                    <div className="ranking_author_avatar" style={{ backgroundImage: `url(${rankingData[0].authorAvatar})` }}></div>
+                    <span className="ranking_author_name">{rankingData[0].authorName}</span>
+                  </div>
+                  <div className="ranking_featured_stats">
+                    <div className="ranking_stat_item">
+                      <i className="fa-solid fa-eye"></i>
+                      <span>{rankingData[0].views}</span>
+                    </div>
+                    <div className="ranking_stat_item">
+                      <i className="fa-solid fa-heart"></i>
+                      <span>{rankingData[0].likes}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="ranking_featured_right">
-              <div className="ranking_number">1위</div>
-              <div className="ranking_featured_title_right">{rankingData[0].title}</div>
+              <div className="ranking_featured_right">
+                <div className="ranking_number">1위</div>
+                <div className="ranking_featured_title_right">{rankingData[0].title}</div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 작품 그리드 */}
         <div className="ranking_works_grid">

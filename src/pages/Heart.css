@@ -175,54 +175,80 @@
 
 @media (max-width: 375px) and (max-height: 812px) {
   .heart_container {
-    width: 100%;
-    margin-left: 0;
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
   }
 
   .heart_top_header {
-    height: 100px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  .heart_main {
-    padding: 10px;
+    height: 120px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
   }
 
   .heart_top_header h2 {
-    font-size: 24px;
-    margin-bottom: 5px;
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
   }
 
   .heart_tag_box_wrap {
-    gap: 5px;
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 10px !important;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .heart_tag_box_wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .heart_tag_box_wrap .tag_box {
+    height: 30px !important;
+    font-size: 14px !important;
+    padding: 0 15px !important;
+    min-width: fit-content !important;
+  }
+
+  .heart_main {
+    padding: 15px !important;
+  }
+
+  .heart_section {
+    margin-bottom: 60px;
   }
 
   .heart_card_grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
 
   .heart_card_image {
-    height: 150px;
+    height: 200px !important;
   }
 
   .heart_card_content {
-    padding: 10px;
+    padding: 10px !important;
   }
 
   .heart_card_title {
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
   }
 
   .heart_card_author {
-    font-size: 10px;
+    font-size: 10px !important;
   }
 
   .heart_author_avatar {
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 5px !important;
   }
 } 
