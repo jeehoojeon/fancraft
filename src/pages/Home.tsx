@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Masonry from 'react-masonry-css';
 import HomeCard from '../components/HomeCard';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const Home: React.FC = () => {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const loadingRef = useRef(false);
+  const navigate = useNavigate();
 
   // 챗봇 상태 관리를 위한 state 추가
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -26,6 +28,11 @@ const Home: React.FC = () => {
       }
       setIsChatbotOpen(true);
     }
+  };
+
+  // 카드 클릭 핸들러 추가
+  const handleCardClick = () => {
+    navigate('/illust/1');
   };
 
   const breakpointColumns = {
@@ -311,6 +318,7 @@ const Home: React.FC = () => {
             description={item.description}
             likes={item.likes}
             views={item.views}
+            onClick={() => handleCardClick()}
           />
         ))}
       </Masonry>

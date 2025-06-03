@@ -29,7 +29,10 @@ const HomeCard: React.FC<HomeCardProps> = ({
             <span><i className="fa-solid fa-heart"></i> {likes.toLocaleString()}</span>
             <span><i className="fa-solid fa-eye"></i> {views.toLocaleString()}</span>
           </div>
-          <button className="home_more_btn">더보기</button>
+          <button className="home_more_btn" onClick={(e) => {
+            e.stopPropagation();
+            onClick?.();
+          }}>더보기</button>
         </div>
       </div>
     </div>
